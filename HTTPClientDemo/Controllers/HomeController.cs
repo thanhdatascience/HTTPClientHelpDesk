@@ -24,7 +24,7 @@ namespace HTTPClientDemo.Controllers
         }
         public async Task<ActionResult<IEnumerable<Ticket>>> Index()
         {
-            var url = "https://graph.facebook.com/";
+            var url = "http://gn-helpdesk-dev.azurewebsites.net/api/ticket/";
             var request = new HttpRequestMessage(HttpMethod.Get,
                 url);
             var client = _clientFactory.CreateClient();
@@ -47,8 +47,9 @@ namespace HTTPClientDemo.Controllers
             return Tickets.ToList();
         }
 
-        public async Task<bool> HTTPPost(string url)
+        public async Task<bool> HTTPPost()
         {
+            var url = "http://gn-helpdesk-dev.azurewebsites.net/api/ticket/create";
             var request = new HttpRequestMessage(HttpMethod.Post, url);
 
             request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
